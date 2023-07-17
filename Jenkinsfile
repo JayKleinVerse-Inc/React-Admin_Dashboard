@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sshagent(['ansible-cred']) {
-                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker image build -t ${JOB_NAME}:v1.${BUILD_ID} ."'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker image build -t react:v1.${BUILD_ID} ."'
                     }
                 }
             }
@@ -43,8 +43,8 @@ pipeline {
             steps {
                 script {
                     sshagent(['ansible-cred']) {
-                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker tag ${JOB_NAME}:v1.${BUILD_ID} ajoke93/${JOB_NAME}:v1.${BUILD_ID}"'
-                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker tag ${JOB_NAME}:v1.${BUILD_ID} ajoke93/${JOB_NAME}:LATEST"'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker tag react:v1.${BUILD_ID} ajoke93/react:v1.${BUILD_ID}"'
+                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "cd /home/ubuntu/reactproject && docker tag react:v1.${BUILD_ID} ajoke93/react:LATEST"'
                     }
                 }
             }
@@ -57,8 +57,8 @@ pipeline {
                         sshagent(['ansible-cred']) {
                             sh """
                                 echo \$DOCKERHUB_PASSWORD | docker login -u \$DOCKERHUB_USERNAME --password-stdin
-                                ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 'docker image push ajoke93/${JOB_NAME}:v1.${BUILD_ID}'
-                                ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 'docker image push ajoke93/${JOB_NAME}:LATEST'
+                                ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 'docker image push ajoke93/react:v1.${BUILD_ID}'
+                                ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 'docker image push ajoke93/react:LATEST'
                             """
                         }
                     }
