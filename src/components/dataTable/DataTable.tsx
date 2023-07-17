@@ -41,6 +41,10 @@ import {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
+        function handleDelete(id: any): void {
+          throw new Error("Function not implemented.");
+        }
+
         return (
           <div className="action">
             <Link to={`/${props.slug}/${params.row.id}`}>
