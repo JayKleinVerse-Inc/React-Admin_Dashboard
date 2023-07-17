@@ -453,6 +453,15 @@ export const menu = [
       phone: "123 456 789",
       createdAt: "01.02.2023",
     },
+    {
+      id: 16,
+      img: "https://images.pexels.com/photos/5540782/pexels-photo-5540782.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+      lastName: "Raji",
+      firstName: "Adeyemi",
+      email: "yemiklein77@gmail.com",
+      phone: "08064248999",
+      createdAt: "01.09.2023",
+    },
   ];
   
   export const products = [
