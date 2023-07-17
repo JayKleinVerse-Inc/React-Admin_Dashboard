@@ -31,10 +31,10 @@ import {
     // //   }
     // // });
   
-    const handleDelete = (id: number) => {
-      //delete the item
-      // mutation.mutate(id)
-    };
+    // const handleDelete = (id: number) => {
+    //   delete the item
+    //   mutation.mutate(id)
+    // };
   
     const actionColumn: GridColDef = {
       field: "action",
