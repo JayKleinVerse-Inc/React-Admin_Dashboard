@@ -23,7 +23,7 @@ pipeline {
                 script {
                     sshagent(['ansible-cred']) {
                         sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.2.68 "mkdir -p /home/ubuntu/reactproject"'
-                        sh 'scp -r /home/ubuntu/workspace/reactproject/* ubuntu@172.31.2.68:/home/ubuntu/reactproject'
+                        sh 'scp -r /home/ubuntu/workspace/React/* ubuntu@172.31.2.68:/home/ubuntu/reactproject'
                     }
                 }
             }
