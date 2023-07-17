@@ -1,23 +1,13 @@
-# Base image
-FROM node:18
-
-# Set the working directory
+# Build stage
+FROM node:18 AS build-stage
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy the entire project
+RUN npm install
 COPY . .
-
-# Build the project
 RUN npm run build
 
-# Expose the desired port
-EXPOSE 3000
-
-# Start the application
-CMD [ "npm", "start" ]
+# Production stage
+FROM nginx:1.21
+COPY --from=build-stage /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
